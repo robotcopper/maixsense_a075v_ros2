@@ -1,0 +1,30 @@
+maixsense_a075v:
+  ros__parameters:
+    host: "192.168.233.1"
+    port: 80
+    request_timeout: 2.0
+    configure_timeout: 20.0
+    body_frame: "a075v_link"
+    tof_optical_frame: "a075v_tof_optical_frame"
+    rgb_optical_frame: "a075v_rgb_optical_frame"
+    publish_static_transforms: true
+    frame_period: 0.03
+    depth_mode: 0
+    depth_shift: 255
+    infrared_mode: 0
+    status_mode: 2
+    status_mask: 7
+    rgb_mode: 1
+    rgb_resolution: 0
+    exposure_time: 0
+    temporal_filter: true
+    temporal_alpha: 0.5
+    spatial_filter: true
+    spatial_filter_type: "gaussian"
+    spatial_kernel_size: 7
+    flying_point_filter: true
+    flying_point_threshold: 0.03
+    keep_normal: true
+    keep_overexposed: false
+    keep_underexposed: false
+    keep_bad: false

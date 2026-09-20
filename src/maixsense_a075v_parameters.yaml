@@ -1,0 +1,153 @@
+maixsense_a075v:
+  host:
+    type: string
+    default_value: "192.168.233.1"
+    description: "IP address of the camera HTTP server."
+    validation:
+      not_empty<>: null
+  port:
+    type: int
+    default_value: 80
+    description: "TCP port of the camera HTTP server."
+    validation:
+      bounds<>: [1, 65535]
+  request_timeout:
+    type: double
+    default_value: 2.0
+    description: "Maximum time in seconds to wait for one camera response."
+    validation:
+      gt<>: [0.0]
+  configure_timeout:
+    type: double
+    default_value: 20.0
+    description: "Maximum time to wait for the camera application during configure."
+    validation:
+      gt<>: [0.0]
+  body_frame:
+    type: string
+    default_value: "a075v_link"
+    description: "Body frame of the camera housing, parent of both optical frames."
+    validation:
+      not_empty<>: null
+  tof_optical_frame:
+    type: string
+    default_value: "a075v_tof_optical_frame"
+    description: "Optical frame used by ToF images and the point cloud."
+    validation:
+      not_empty<>: null
+  rgb_optical_frame:
+    type: string
+    default_value: "a075v_rgb_optical_frame"
+    description: "Optical frame used by RGB images."
+    validation:
+      not_empty<>: null
+  publish_static_transforms:
+    type: bool
+    default_value: true
+    description: "Publish body frame to optical frames; disable when a URDF owns those edges."
+  frame_period:
+    type: double
+    default_value: 0.03
+    description: "Minimum interval between frame requests, in seconds."
+    validation:
+      gt<>: [0.0]
+  depth_mode:
+    type: int
+    default_value: 0
+    description: "Depth encoding: 0 for 16-bit, 1 for 8-bit."
+    validation:
+      bounds<>: [0, 1]
+  depth_shift:
+    type: int
+    default_value: 255
+    description: "Depth shift in 8-bit mode; 255 selects the camera LUT."
+    validation:
+      bounds<>: [0, 255]
+  infrared_mode:
+    type: int
+    default_value: 0
+    description: "Infrared encoding: 0 for 16-bit, 1 for 8-bit."
+    validation:
+      bounds<>: [0, 1]
+  status_mode:
+    type: int
+    default_value: 2
+    description: "Status encoding: 0=16-bit, 1=2-bit, 2=8-bit, 3=1-bit."
+    validation:
+      bounds<>: [0, 3]
+  status_mask:
+    type: int
+    default_value: 7
+    description: "Mask used by the camera in 1-bit status mode."
+    validation:
+      bounds<>: [0, 7]
+  rgb_mode:
+    type: int
+    default_value: 1
+    description: "RGB encoding: 0=YUV, 1=JPEG, 2=disabled."
+    validation:
+      bounds<>: [0, 2]
+  rgb_resolution:
+    type: int
+    default_value: 0
+    description: "RGB resolution: 0=800x600, 1=1600x1200."
+    validation:
+      bounds<>: [0, 1]
+  exposure_time:
+    type: int
+    default_value: 0
+    description: "Camera exposure; zero selects automatic exposure."
+    validation:
+      gt_eq<>: [0]
+  temporal_filter:
+    type: bool
+    default_value: true
+    description: "Enable temporal filtering."
+  temporal_alpha:
+    type: double
+    default_value: 0.5
+    description: "Weight of the newest sample in the temporal filter."
+    validation:
+      bounds<>: [0.0, 1.0]
+  spatial_filter:
+    type: bool
+    default_value: true
+    description: "Enable spatial filtering."
+  spatial_filter_type:
+    type: string
+    default_value: "gaussian"
+    description: "Spatial filter algorithm: gaussian or bilateral."
+    validation:
+      not_empty<>: null
+  spatial_kernel_size:
+    type: int
+    default_value: 7
+    description: "Side length of the spatial Gaussian kernel."
+    validation:
+      bounds<>: [1, 31]
+  flying_point_filter:
+    type: bool
+    default_value: true
+    description: "Enable rejection of flying points."
+  flying_point_threshold:
+    type: double
+    default_value: 0.03
+    description: "Relative depth discontinuity rejected as a flying point."
+    validation:
+      gt<>: [0.0]
+  keep_normal:
+    type: bool
+    default_value: true
+    description: "Keep pixels whose camera status is normal."
+  keep_overexposed:
+    type: bool
+    default_value: false
+    description: "Keep overexposed pixels."
+  keep_underexposed:
+    type: bool
+    default_value: false
+    description: "Keep underexposed pixels."
+  keep_bad:
+    type: bool
+    default_value: false
+    description: "Keep pixels marked bad by the camera."
